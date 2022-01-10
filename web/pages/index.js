@@ -26,6 +26,19 @@ export default function Home() {
         kernel.statusChanged.connect((_, status) => {
           console.log(`Status: ${status}`);
         });
+
+        const future = kernel.requestExecute({
+          code: "for i in range(10):\n\tprint(i)\n",
+        });
+        // Handle iopub messages
+        future.onIOPub = (msg) => {
+          if (msg.header.msg_type !== "status") {
+            console.log(msg.content);
+          }
+        };
+        await future.done;
+
+        await kernel.shutdown();
       } catch (e) {
         console.log(e);
       }
