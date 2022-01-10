@@ -2,6 +2,15 @@
 
 - Is it possible to run a jupyter kernel locally and have a web client connect to it?
 
+```bash
+# run the web server
+cd web
+npm run dev
+
+# start the jupyter kernel
+jupyter notebook
+```
+
 ## References
 - https://jupyter-kernel-gateway.readthedocs.io/en/latest/index.html
 - https://jupyter-client.readthedocs.io/en/latest/messaging.html#execute
